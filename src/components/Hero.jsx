@@ -5,15 +5,15 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  ArrowRight, 
-  Code, 
-  Server, 
-  Database, 
-  Briefcase, 
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ArrowRight,
+  Code,
+  Server,
+  Database,
+  Briefcase,
   Download,
   Monitor,
   Globe,
@@ -27,51 +27,51 @@ import "./hero.css";
 const useMatrixAnimation = (canvasId) => {
   useEffect(() => {
     if (typeof window === "undefined") return;
-    
+
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
-    
+
     const ctx = canvas.getContext("2d");
     let animationId;
-    
+
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-    
+
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
-    
+
     const characters =
       "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const columns = Math.floor(canvas.width / 20);
     const drops = Array(columns).fill(1);
-    
+
     const draw = () => {
       ctx.fillStyle = "rgba(0, 10, 20, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
+
       ctx.fillStyle = "#0fc";
       ctx.font = "15px monospace";
-      
+
       for (let i = 0; i < drops.length; i++) {
         const text = characters.charAt(
           Math.floor(Math.random() * characters.length)
         );
         ctx.fillText(text, i * 20, drops[i] * 20);
-        
+
         if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
-        
+
         drops[i]++;
       }
-      
+
       animationId = requestAnimationFrame(draw);
     };
-    
+
     draw();
-    
+
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       if (animationId) {
@@ -85,12 +85,12 @@ const useMatrixAnimation = (canvasId) => {
 const useTypingEffect = (text, speed = 30) => {
   const [displayText, setDisplayText] = useState("");
   const [isComplete, setIsComplete] = useState(false);
-  
+
   useEffect(() => {
     let index = 0;
     setDisplayText("");
     setIsComplete(false);
-    
+
     const timer = setInterval(() => {
       if (index < text.length) {
         setDisplayText(text.substring(0, index + 1));
@@ -100,27 +100,27 @@ const useTypingEffect = (text, speed = 30) => {
         clearInterval(timer);
       }
     }, speed);
-    
+
     return () => clearInterval(timer);
   }, [text, speed]);
-  
+
   return { displayText, isComplete };
 };
 
 // Custom hook for glitch effect
 const useGlitchEffect = (interval = 5000, duration = 200) => {
   const [isGlitching, setIsGlitching] = useState(false);
-  
+
   useEffect(() => {
     const glitchInterval = setInterval(() => {
       setIsGlitching(true);
       const timeout = setTimeout(() => setIsGlitching(false), duration);
       return () => clearTimeout(timeout);
     }, interval);
-    
+
     return () => clearInterval(glitchInterval);
   }, [interval, duration]);
-  
+
   return isGlitching;
 };
 
@@ -150,10 +150,10 @@ StatCard.displayName = "StatCard";
 const SocialLink = React.memo(
   ({ href, icon: Icon, variant, label, ...props }) => (
     <a href={href} className="social-link" aria-label={label} {...props}>
-    <div className={`social-icon ${variant}`}>
-      <Icon size={18} aria-hidden="true" />
-    </div>
-  </a>
+      <div className={`social-icon ${variant}`}>
+        <Icon size={18} aria-hidden="true" />
+      </div>
+    </a>
   )
 );
 
@@ -163,15 +163,15 @@ const Hero = () => {
   const heroRef = useRef(null);
   const profileRef = useRef(null);
   const titleRef = useRef(null);
-  
+
   // Custom hooks
   const isGlitching = useGlitchEffect(5000, 200);
   useMatrixAnimation("matrix-canvas");
-  
+
   const fullText =
     "I create modern web solutions that solve real business problems. With expertise in both frontend and backend technologies, I build applications that are intuitive, scalable, and maintainable.";
   const { displayText, isComplete } = useTypingEffect(fullText, 30);
-  
+
   // Memoized data
   const skills = useMemo(
     () => [
@@ -196,7 +196,7 @@ const Hero = () => {
     () => [
       {
         href: "https://github.com/DebrainStark",
-      icon: Github,
+        icon: Github,
         variant: "github",
         label: "GitHub Profile",
         target: "_blank",
@@ -204,7 +204,7 @@ const Hero = () => {
       },
       {
         href: "https://www.linkedin.com/in/otoibhi-anthony-b-eng-gnse-970049161",
-      icon: Linkedin,
+        icon: Linkedin,
         variant: "linkedin",
         label: "LinkedIn Profile",
         target: "_blank",
@@ -212,14 +212,14 @@ const Hero = () => {
       },
       {
         href: "mailto:anuoluwaotoibhi@gmail.com",
-      icon: Mail,
+        icon: Mail,
         variant: "mail",
         label: "Send Email",
       },
     ],
     []
   );
-  
+
   // Event handlers
   const handleProjectsClick = useCallback((e) => {
     e.preventDefault();
@@ -228,50 +228,50 @@ const Hero = () => {
       projectsSection.scrollIntoView({ behavior: "smooth" });
     }
   }, []);
-  
+
   const handleDownloadCV = useCallback(() => {
     // Analytics or tracking can be added here
     console.log("CV download initiated");
   }, []);
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className={`hero-section ${isGlitching ? "glitch" : ""}`}
       ref={heroRef}
       aria-label="Hero section"
     >
       {/* Matrix code background */}
-      <canvas 
-        id="matrix-canvas" 
+      <canvas
+        id="matrix-canvas"
         className="matrix-background"
         aria-hidden="true"
       />
-      
+
       {/* Background simplified to subtle gradient */}
       <div className="hero-background" aria-hidden="true">
         <div className="gradient-surface" />
       </div>
-      
+
       <div className="container">
         <div className="hero-modern">
           {/* Profile Column */}
           <div className="hero-modern__media" ref={profileRef}>
             <div className="avatar">
-                <img 
-                  src="/logoo.png" 
-                  alt="Otoibhi Anthony - Full Stack Developer" 
-                  loading="eager"
-                  width="200"
-                  height="200"
-                />
-              </div>
+              <img
+                src="/logoo.png"
+                alt="Akintayo Ajibola - Full Stack Developer"
+                loading="eager"
+                width="200"
+                height="200"
+              />
+            </div>
             <div
               className="skill-chips"
               role="list"
               aria-label="Technical skills"
             >
-                  {skills.map((skill, index) => (
+              {skills.map((skill, index) => (
                 <span
                   key={`${skill.label}-${index}`}
                   className={`chip chip--${skill.variant}`}
@@ -283,20 +283,20 @@ const Hero = () => {
               ))}
             </div>
           </div>
-          
+
           {/* Content Column */}
           <div className="hero-modern__content">
             <div className="role-pill" role="banner">
               <span className="role-dot" aria-hidden="true"></span>
               Full-Stack Developer
             </div>
-            
+
             <header className="hero-modern__title" ref={titleRef}>
               <h1>
-                Hi, I'm <span className="accent">Otoibhi Anthony</span>
+                Hi, I'm <span className="accent">Akintayo Ajibola</span>
               </h1>
             </header>
-            
+
             <div
               className="hero-modern__desc"
               role="complementary"
@@ -312,7 +312,7 @@ const Hero = () => {
                 <span aria-live="polite">{displayText}</span>
               </p>
             </div>
-            
+
             <div
               className="stats"
               role="region"
@@ -327,29 +327,29 @@ const Hero = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className="cta" role="navigation" aria-label="Main actions">
-              <a 
-                href="#projects" 
+              <a
+                href="#projects"
                 className="btn btn--primary"
                 onClick={handleProjectsClick}
                 aria-label="View my projects"
               >
                 <span>View Projects</span>
-                  <ArrowRight size={18} />
+                <ArrowRight size={18} />
               </a>
-              <a 
-                href="/resume.pdf" 
+              <a
+                href="/resume.pdf"
                 className="btn btn--ghost"
                 download
                 onClick={handleDownloadCV}
                 aria-label="Download my CV/Resume"
               >
-                  <Download size={18} />
+                <Download size={18} />
                 <span>Download CV</span>
               </a>
             </div>
-            
+
             <div
               className="social"
               role="navigation"

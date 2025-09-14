@@ -3,30 +3,30 @@ import { Github, Linkedin, Mail, Clock, Heart, Terminal } from "lucide-react";
 
 const CyberpunkFooter = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  
+
   // Update the time every second
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
-    
+
     return () => clearInterval(timer);
   }, []);
-  
+
   // Format time as HH:MM:SS
-  const formattedTime = currentTime.toLocaleTimeString([], { 
+  const formattedTime = currentTime.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
   });
-  
+
   // Format date as Month DD, YYYY
   const formattedDate = currentTime.toLocaleDateString([], {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-  
+
   // Social links
   const socialLinks = [
     {
@@ -62,7 +62,7 @@ const CyberpunkFooter = () => {
         <div className="neo-footer__gradient-primary"></div>
         <div className="neo-footer__gradient-secondary"></div>
       </div>
-      
+
       <div className="neo-container">
         {/* Navigation */}
         <div className="neo-footer__nav">
@@ -76,7 +76,7 @@ const CyberpunkFooter = () => {
             ))}
           </ul>
         </div>
-        
+
         {/* Time Display */}
         <div className="neo-footer__time">
           <div className="neo-footer__time-frame">
@@ -84,7 +84,7 @@ const CyberpunkFooter = () => {
             <div className="neo-footer__time-corner top-right"></div>
             <div className="neo-footer__time-corner bottom-left"></div>
             <div className="neo-footer__time-corner bottom-right"></div>
-            
+
             <div className="neo-footer__time-content">
               <div className="neo-footer__time-icon">
                 <Clock size={16} />
@@ -96,11 +96,11 @@ const CyberpunkFooter = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="neo-footer__divider">
           <div className="neo-footer__divider-line"></div>
         </div>
-        
+
         {/* Bottom Row */}
         <div className="neo-footer__bottom">
           <div className="neo-footer__copyright">
@@ -109,7 +109,7 @@ const CyberpunkFooter = () => {
               <span>System.v1.0</span>
             </div>
             <div className="neo-footer__copyright-text">
-              &copy; {new Date().getFullYear()} Otoibhi Anthony. All rights
+              &copy; {new Date().getFullYear()} Akintayo Ajibola. All rights
               reserved.
             </div>
             <div className="neo-footer__made-with">
@@ -117,14 +117,14 @@ const CyberpunkFooter = () => {
               <Heart size={12} className="neo-footer__heart" />
             </div>
           </div>
-          
+
           <div className="neo-footer__social">
             {socialLinks.map((link, index) => (
-              <a 
+              <a
                 key={index}
-                href={link.url} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={link.label}
                 className="neo-footer__social-link"
               >
@@ -156,7 +156,7 @@ const CyberpunkFooter = () => {
           padding: 0 16px;
           z-index: 1;
         }
-        
+
         .neo-footer__nav {
           margin-bottom: 16px;
           display: flex;
@@ -184,7 +184,7 @@ const CyberpunkFooter = () => {
           color: #e2e8f0;
           background: rgba(148, 163, 184, 0.12);
         }
-        
+
         .neo-footer__time {
           display: flex;
           justify-content: center;
@@ -229,7 +229,7 @@ const CyberpunkFooter = () => {
           font-size: 12px;
           color: #94a3b8;
         }
-        
+
         .neo-footer__divider {
           display: flex;
           justify-content: center;
