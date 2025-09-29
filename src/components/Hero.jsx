@@ -203,7 +203,7 @@ const Hero = () => {
         rel: "noopener noreferrer",
       },
       {
-        href: "https://www.linkedin.com/in/otoibhi-anthony-b-eng-gnse-970049161",
+        href: "https://www.linkedin.com/in/",
         icon: Linkedin,
         variant: "linkedin",
         label: "LinkedIn Profile",
@@ -211,7 +211,7 @@ const Hero = () => {
         rel: "noopener noreferrer",
       },
       {
-        href: "mailto:anuoluwaotoibhi@gmail.com",
+        href: "mailto:akintayoajibola3@gmail.com",
         icon: Mail,
         variant: "mail",
         label: "Send Email",

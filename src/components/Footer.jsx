@@ -36,12 +36,12 @@ const CyberpunkFooter = () => {
     },
     {
       icon: <Linkedin size={18} />,
-      url: "https://www.linkedin.com/in/otoibhi-anthony-b-eng-gnse-970049161",
+      url: "https://www.linkedin.com/in/",
       label: "LinkedIn",
     },
     {
       icon: <Mail size={18} />,
-      url: "mailto:starkwave@outlook.com",
+      url: "mailto:akintayoajibola3@gmail.com",
       label: "Email",
     },
   ];
